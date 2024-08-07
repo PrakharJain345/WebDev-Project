@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Store</title>
+    <style>
+        /* Styles for layout and basic elements */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 100px; /* Adjusted to accommodate fixed footer */
+        }
+
+        header {
+            background: #ff5722;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            background: #4caf50;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            display: block;
+        }
+
+        nav ul li:hover > ul {
+            display: block;
+        }
+
+        nav ul ul {
+            display: none;
+            position: absolute;
+            background: #388e3c;
+            border-radius: 0 0 5px 5px;
+            z-index: 1;
+        }
+
+        nav ul ul li {
+            width: 100%;
+        }
+
+        nav ul ul li a {
+            padding: 10px 20px;
+        }
+
+        nav a:hover {
+            background: #43a047;
+        }
+
+        .container {
+            width: 90%; /* Adjusted for responsiveness */
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center; /* Centered for responsiveness */
+        }
+
+        .item-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted for responsiveness */
+            grid-gap: 20px;
+        }
+
+        .item {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .logo img {
+            width: 150px;
+            margin-top: 10px;
+        }
+
+        /* Add styles for cart */
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            max-width: 300px;
+            overflow-y: auto;
+            height: 300px; /* Adjust height to make the cart scrollable */
+        }
+
+        .cart p {
+            margin: 0;
+        }
+
+        .cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart ul li button {
+            background: #ff5722;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart ul li button:hover {
+            background: #e64a19;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Adjustments for smaller screens */
+            .container {
+                width: 95%;
+            }
+
+            .item-menu {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Added logo -->
+    <div class="logo">
+        <img src="img8.png" alt="Burger Store Logo">
+    </div>
+    <h1><u><b>Burger King</u></b></h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a>
+            <ul>
+                <li><a href="#burgers">Burgers</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li><a href="#drinks">Drinks</a></li>
+                <li><a href="#others">Other Items</a></li>
+            </ul>
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div id="burgers" class="section">
+        <h2>Our Delicious Burgers</h2>
+        <div class="item-menu">
+            <div class="item" data-name="Classic Burger" data-price="200">
+                <img src="img1.jfif" alt="Burger 1">
+                <h3>Classic Burger</h3>
+                <p>Rs. 200</p>
+            </div>
+            <div class="item" data-name="Double Cheeseburger" data-price="400">
+                <img src="img7.jpg" alt="Burger 2">
+                <h3>Double Cheeseburger</h3>
+                <p>Rs. 400</p>
+            </div>
+            <!-- Add more burger items here -->
+        </div>
+    </div>
+
+    <div id="combos" class="section">
+        <h2>Irresistible Combos</h2>
+        <div class="item-menu">
+            <div class="item" data-name="Family Feast Combo" data-price="1000">
+                <img src="img11.jpg" alt="Combo 1">
+                <h3>Family Feast Combo</h3>
+                <p>Rs. 1000</p>
+            </div>
+            <div class="item" data-name="Friends Combo" data-price="800">                                                    
+                <img src="img12.jpg" alt="Combo 2">
+                <h3>Friends Combo</h3>
+                <p>Rs. 800</p>
+            </div>
+            <!-- Add more combo items here -->
+        </div>
+    </div>
+
+    <div id="drinks" class="section">
+        <h2>Refreshing Drinks</h2> 
+        <div class="item-menu">
+            <div class="item" data-name="Cola" data-price="50">
+                <img src="img13.jpg" alt="Drink 1">
+                <h3>Cola</h3>
+                <p>Rs. 50</p>
+            </div>
+            <div class="item" data-name="Lemonade" data-price="60">
+                <img src="img14.jpg" alt="Drink 2">
+                <h3>Lemonade</h3>
+                <p>Rs. 60</p>
+            </div>
+            <!-- Add more drink items here -->
+        </div>
+    </div>
+
+    <div id="others" class="section">
+        <h2>Other Delicious Items</h2>
+        <div class="item-menu">
+            <div class="item" data-name="Fries" data-price="100">
+                <img src="img15.jpg" alt="Other Item 1">
+                <h3>Fries</h3>
+                <p>Rs. 100</p>
+            </div>
+            <div class="item" data-name="Pizza Mcpuff" data-price="120">
+                <img src="img16.jpg" alt="Other Item 2">
+                <h3>Pizza Mcpuff</h3>
+                <p>Rs. 120</p>
+            </div>
+            <!-- Add more other items here -->
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Burger King. All rights reserved.
+        <br>
+        Email- Burgerking@example.com
+    </p>
+</footer>
+
+<div class="cart" id="cart">
+    <h2>Cart</h2>
+    <ul id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+    </ul>
+    <p>Total Price: Rs. <span id="total-price">0</span></p>
+</div>
+
+<script>
+    // Load cart data from localStorage when the page is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItems = document.getElementById('cart-items');
+        const totalPriceEl = document.getElementById('total-price');
+
+        let totalPrice = 0;
+
+        // Function to add an item to the cart
+        function addItemToCart(name, price) {
+            const li = document.createElement('li');
+            li.textContent = `${name} - Rs. ${price}`;
+            const button = document.createElement('button');
+            button.textContent = 'Remove';
+            button.addEventListener('click', () => {
+                // Remove item from the cart
+                cart = cart.filter(item => item.name !== name || item.price !== price);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                li.remove();
+                totalPrice -= price;
+                totalPriceEl.textContent = totalPrice;
+            });
+            li.appendChild(button);
+            cartItems.appendChild(li);
+        }
+
+        cart.forEach(item => {
+            addItemToCart(item.name, item.price);
+            totalPrice += item.price;
+        });
+
+        totalPriceEl.textContent = totalPrice;
+
+        // Add event listeners to item buttons
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', () => {
+                const name = item.getAttribute('data-name');
+                const price = parseFloat(item.getAttribute('data-price'));
+
+                addItemToCart(name, price);
+                totalPrice += price;
+                totalPriceEl.textContent = totalPrice;
+
+                // Save to localStorage
+                cart.push({ name, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
